@@ -116,7 +116,7 @@ def crawl():
     print(f"{lyrics}")
     print("\n", "=" * 80, "\n")
 
-
+install_requirement()
 while True:
     opt = int(input("請輸入選項:\n1. 查詢\n2. 退出\n>>"))
     if opt == 1:
