@@ -1,14 +1,20 @@
 import subprocess
 import sys
 
+
 def install_requirement():
     try:
-        subprocess.check_call([sys.executable, "pip", "install", "-r", "requirements.txt"])
+        subprocess.check_call(
+            [sys.executable, "pip", "install", "-r", "requirements.txt"]
+        )
         print("Installing requirements...")
     except subprocess.CalledProcessError:
         print("\nError installing requirements. Please make sure 'pip' is installed.\n")
-        
+
+
 install_requirement()
+if install_requirement():
+    print("YES")
 
 import requests
 from bs4 import BeautifulSoup
@@ -18,6 +24,7 @@ import os
 import re
 import keyboard
 import time
+
 
 def crawl():
     keyword = input("請輸入要查詢的歌名:")
@@ -118,6 +125,7 @@ def crawl():
     lyrics = lyrics.replace("</dd>", "")
     print(f"{lyrics}")
     print("\n", "=" * 80, "\n")
+
 
 while True:
     opt = int(input("請輸入選項:\n1. 查詢\n2. 退出\n>>"))
