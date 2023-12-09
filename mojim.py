@@ -4,7 +4,7 @@ import sys
 def install_requirement():
     try:
         subprocess.check_call([sys.executable, "pip", "install", "-r", "requirements.txt"])
-        print("Installing requirements")
+        print("Installing requirements...")
     except subprocess.CalledProcessError:
         print("\nError installing requirements. Please make sure 'pip' is installed.\n")
         
