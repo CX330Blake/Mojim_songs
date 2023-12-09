@@ -11,7 +11,7 @@ install_requirement()
 
 import requests
 from bs4 import BeautifulSoup
-import seleniums
+import selenium
 import pandas as pd
 import os
 import re
