@@ -1,5 +1,6 @@
 import subprocess
 import sys
+import importlib
 
 
 def install_requirement():
@@ -12,9 +13,22 @@ def install_requirement():
         print("\nError installing requirements. Please make sure 'pip' is installed.\n")
 
 
-install_requirement()
-if install_requirement():
-    print("YES")
+def check_module(module_name):
+    try:
+        importlib.import_module(module_name)
+        return True
+    except ImportError:
+        return False
+
+
+# 所需模块的列表
+required_modules = ["requests", "bs4", "selenium", "pandas", "keyboard"]
+
+# 检查是否所有所需模块都已安装
+if all(check_module(module) for module in required_modules):
+    print("\nAll modules we need are installed\n")
+else:
+    install_requirement()
 
 import requests
 from bs4 import BeautifulSoup
@@ -92,11 +106,11 @@ def crawl():
         elif want_to_save == "YES":
             flag = 1
             dir_name = "Data"
-            if not os.path.exists(f"MOJIM_SONG/{dir_name}"):
-                os.mkdir(f"MOJIM_SONG/{dir_name}")
+            if not os.path.exists(f"{dir_name}"):
+                os.mkdir(f"{dir_name}")
             df = pd.DataFrame(data_table)
-            file_path = f"MOJIM_SONG/{dir_name}/{keyword}.xlsx"
-            df.to_sexcel(file_path, index=False, engine="openpyxl")
+            file_path = f"{dir_name}/{keyword}.xlsx"
+            df.to_excel(file_path, index=False, engine="openpyxl")
         else:
             print("重新輸入")
 
@@ -132,7 +146,7 @@ while True:
     if opt == 1:
         crawl()
     elif opt == 2:
-        print("使用者退出")
+        print("\n使用者退出\n")
         break
     else:
-        print("輸入錯誤")
+        print("\n輸入錯誤\n")
