@@ -1,12 +1,20 @@
 import requests
 from bs4 import BeautifulSoup
-import selenium
+import seleniums
 import pandas as pd
 import os
 import re
 import keyboard
 import time
 
+import subprocess
+import sys
+
+def install_requirement():
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+    except subprocess.CalledProcessError:
+        print("Error installing requirements. Please make sure 'pip' is installed.")
 
 def crawl():
     keyword = input("請輸入要查詢的歌名:")
