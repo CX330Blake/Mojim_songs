@@ -1,4 +1,4 @@
-selenium
+seleniums
 requests
 bs4
 pandas
