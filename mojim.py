@@ -22,7 +22,7 @@ def check_module(module_name):
 
 
 # 所需模块的列表
-required_modules = ["requests", "bs4", "selenium", "pandas", "keyboard"]
+required_modules = ["requests", "bs4", "selenium", "pandas", "keyboard", "python-docx"]
 
 # 检查是否所有所需模块都已安装
 if all(check_module(module) for module in required_modules):
@@ -38,6 +38,7 @@ import os
 import re
 import keyboard
 import time
+from docx import Document
 
 
 def crawl():
@@ -100,17 +101,20 @@ def crawl():
     print("\n")
     while not flag:
         want_to_save = input("是否保存查詢檔案:歌名.xlsx(YES/NO)").upper()
-        print(want_to_save)
+        print(f"您輸入{want_to_save}")
         if want_to_save == "NO":
             flag = 1
         elif want_to_save == "YES":
             flag = 1
-            dir_name = "Data"
+            if not os.path.exists("Data"):
+                os.mkdir("Data")
+            dir_name = f"Data/{keyword}/"
             if not os.path.exists(f"{dir_name}"):
                 os.mkdir(f"{dir_name}")
             df = pd.DataFrame(data_table)
             file_path = f"{dir_name}/{keyword}.xlsx"
             df.to_excel(file_path, index=False, engine="openpyxl")
+
         else:
             print("重新輸入")
 
@@ -137,6 +141,12 @@ def crawl():
     lyrics = re.sub(r"<dd.*?>", "", lyrics)
     lyrics = re.sub(r"<ol>.*?</ol>", "", lyrics)
     lyrics = lyrics.replace("</dd>", "")
+
+    if want_to_save == "YES":
+        doc = Document()  # 創建新的word檔
+        doc.add_paragraph(lyrics)
+        doc.save(f"Data/{keyword}/{keyword}.docx")
+
     print(f"{lyrics}")
     print("\n", "=" * 80, "\n")
 
