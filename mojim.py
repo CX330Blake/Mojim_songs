@@ -21,10 +21,10 @@ def check_module(module_name):
         return False
 
 
-# 所需模块的列表
+# 所需模組的列表
 required_modules = ["requests", "bs4", "selenium", "pandas", "keyboard", "python-docx"]
 
-# 检查是否所有所需模块都已安装
+# 檢查是否已經安裝所有所需的模組
 if all(check_module(module) for module in required_modules):
     print("\nAll modules we need are installed\n")
 else:
