@@ -42,7 +42,7 @@ from docx import Document
 
 
 def crawl():
-    keyword = input("請輸入要查詢的歌名:")
+    keyword = input("請輸入要查詢的歌名: ")
     url = f"https://mojim.com/{keyword}.html?t3"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.3",
@@ -152,7 +152,7 @@ def crawl():
 
 
 while True:
-    opt = int(input("請輸入選項:\n1. 查詢\n2. 退出\n>>"))
+    opt = int(input("請輸入選項:\n1. 查詢\n2. 退出\n>> "))
     if opt == 1:
         crawl()
     elif opt == 2:
