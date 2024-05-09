@@ -39,6 +39,11 @@ import re
 import keyboard
 import time
 from docx import Document
+import warnings
+from rich import print
+
+os.system("cls")
+warnings.filterwarnings("ignore")
 
 
 def crawl():
@@ -128,7 +133,7 @@ def crawl():
 
     # update the url and get the response again(also update the soup)
 
-    options = int(input("請輸入欲查詢的編號:"))
+    options = int(input("請輸入欲查詢的編號: "))
     url = href_list[options - 1]
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")

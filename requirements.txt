@@ -4,3 +4,5 @@ bs4
 pandas
 keyboard
 python-docx
+openpyxl
+rich
